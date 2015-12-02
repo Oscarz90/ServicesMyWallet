@@ -8,6 +8,7 @@ Paquetes Instalados
 Paquetes PIP Instalados
 
 + Flask
++ pymongo
 
 
 #### Errores y Soluciones:  
@@ -49,24 +50,27 @@ Instrucciones Iniciar Proyecto Flask
 
 	Ahora activaremos nuestro entorno virtual para poder trabajar sobre él y que las configuraciones y descargas de paquetes que hagamos esten solamente en nuestro Proyecto y no de forma global.  
 	
-	**Windows:**  
+	>Windows:    
+	  
 	```
 	C:\Users\Name\MyRestAPI> MyRestAPIEnv\Scripts\activate
 	```
 	
-	**Mac OS X y Linux:**  
+	>Mac OS X y Linux:  
 	```
 	~/MyRestAPI $ . MyRestAPIEnv/bin/activate
 	```
 	
 	_Sabrás que tienes el entorno virtual activado cuando veas este mensaje en la consola._
 	
-	**Windows:**  
+	>Windows:
+	  
 	```
 	(MyRestAPIEnv) C:\Users\Name\MyRestAPI>
 	```
 	
-	**Mac OS X y Linux:**  
+	>Mac OS X y Linux:
+	
 	```
 	(MyRestAPIEnv) ~/MyRestAPI $
 	```
