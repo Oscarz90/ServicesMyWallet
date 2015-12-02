@@ -1,0 +1,12 @@
+{
+	"usuario_id"   : "",
+	"nombre"       : "Hogar",
+	"descripcion"  : "Gastos de la familia",
+	"montoInicial" : "3000"
+},
+{
+	"usuario_id"   : "",
+	"nombre"       : "Prestamo",
+	"descripcion"  : "Prestamo del Carro",
+	"montoInicial" : "1000"
+}
