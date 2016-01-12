@@ -1,9 +1,9 @@
 from ServicesMyWallet import app
 from ServicesMyWallet import db
+from flask import request, jsonify ,json
+#Serializar 
+from bson.json_util import dumps
 
-from flask import request
-
-from bson import json_util
 
 #Referencia a la coleccion usuario
 usuario = db.usuario
@@ -11,15 +11,20 @@ usuario = db.usuario
 #Obtencion de todos los Usuarios
 @app.route("/usuarios", methods=['GET'])
 def obtenerUsuarios():
+  #Obtiene todos los usuarios
+ 
+  usuarios =usuario.find()
+  #Metodo 1
+  #return dumps(usuarios)
+
   
-  usuarios =usuario.find({"nombre":"Oscar"})
+  #Metodo 2
+  respuesta=dumps(usuarios)
+  #return jsonify(respuesta=respuesta)
+  return jsonify({'respuesta':respuesta})
+  #return json.dumps(respuesta)
   
-  respuesta_json = []
-  
-  for result in usuarios:
-    respuesta_json.append(result)
-  
-  return json_util.dumps(usuarios,default=json_util.default)
+
   
   #return "obtenerUsuarios"
 
