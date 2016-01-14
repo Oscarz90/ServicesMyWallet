@@ -12,7 +12,6 @@ usuario = db.usuario
 @app.route("/usuarios", methods=['GET'])
 def obtenerUsuarios():
   #Obtiene todos los usuarios
- 
   usuarios =usuario.find()
   #Metodo 1
   #return dumps(usuarios)
@@ -20,6 +19,7 @@ def obtenerUsuarios():
   
   #Metodo 2
   respuesta=dumps(usuarios)
+  print(type(respuesta))
   #return jsonify(respuesta=respuesta)
   return jsonify({'respuesta':respuesta})
   #return json.dumps(respuesta)
@@ -31,27 +31,30 @@ def obtenerUsuarios():
 #Guardado de un usuario
 @app.route("/usuarios", methods=['POST'])
 def guardarUsuario():
-  '''UsuarioInsertar={
-                  "nickname": "Lorel",
-                  "email": "lorel@live.com.mx",
-                  "password": "lorel",
-                  "nombre": "Lorel",
-                  "apellido": "Sainez"'''
-  #usuario.insert(UsuarioInsertar)
-	#valores = request.get_json()
+  peticion = request.get_json()
+  print(peticion)
   print(request.json)
-  return "hola"
+
+  resultado = usuario.insert_one(peticion)
+  print(type(resultado.inserted_id))
+  return jsonify({'respuesta': resultado.inserted_id})
   
 
 #Obtencion de un usuario por id
-@app.route("/usuarios/<id>", methods=['GET'])
-def obtenerUsuarioPorId(id):
-  return "obtenerUsuarioPorId"
+@app.route("/usuarios/<nickname>", methods=['GET'])
+def obtenerUsuarioPorId(nickname):
+  respuesta= usuario.find_one({'nickname':nickname})
+   #Metodo 2
+  respuestaJson=dumps(respuesta)
+  #return jsonify(respuesta=respuesta)
+  return jsonify({'respuesta':respuestaJson})
 
 #Actualizar un usuario por id
-@app.route("/usuarios/<id>", methods=['PUT'])
-def actualizarUsuarioPorId(id):
-	return "actualizarUsuarioPorId"
+@app.route("/usuarios/<nickname>", methods=['PUT'])
+def actualizarUsuarioPorId(nickname):
+  peticion = request.get_json()
+  resultado = usuario.update_one({'nickname':nickname},{'$set': {'nombre': peticion['nombre']}})
+  return jsonify({'nose':'sabe'})
 
 #Eliminar un usuario por id
 @app.route("/usuarios/<id>", methods=['DELETE'])
